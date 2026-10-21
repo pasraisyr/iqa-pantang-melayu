@@ -18,6 +18,13 @@ import { Footer } from './components/Footer';
 import { CartProvider } from './context/CartContext';
 
 export const App: React.FC = () => {
+  React.useEffect(() => {
+    // If user refreshes or loads page without a specific anchor, stay at Hero at top
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   return (
     <CartProvider>
       <div className="site-wrapper">

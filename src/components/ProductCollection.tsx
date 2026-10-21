@@ -23,6 +23,7 @@ export const ProductCollection: React.FC = () => {
   const descriptionRef = useRef<HTMLDivElement>(null);
   const thumbnailsRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
+  const isFirstRender = useRef(true);
 
   const totalProducts = PRODUCTS.length;
   const currentProduct = PRODUCTS[currentIndex];
@@ -89,17 +90,25 @@ export const ProductCollection: React.FC = () => {
       window.removeEventListener('select-product-by-id', handleSelectById);
   }, []);
 
-  // Keep active thumbnail in view
+  // Keep active thumbnail in view (only on user interaction, never hijack window scroll on load)
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     if (thumbnailsRef.current) {
       const activeEl = thumbnailsRef.current.querySelector(
         `[data-thumb-index="${currentIndex}"]`
       ) as HTMLElement | null;
       if (activeEl) {
-        activeEl.scrollIntoView({
+        const container = thumbnailsRef.current;
+        const scrollLeft =
+          activeEl.offsetLeft -
+          container.offsetWidth / 2 +
+          activeEl.offsetWidth / 2;
+        container.scrollTo({
+          left: scrollLeft,
           behavior: 'smooth',
-          block: 'nearest',
-          inline: 'center',
         });
       }
     }
