@@ -11,7 +11,7 @@ export const Navbar: React.FC = () => {
       {/* Garis Hiasan Atas */}
       <div className="nav-top-gold-bar" />
 
-      <div className="section-container">
+      <div className="royal-nav-container">
         <div className="royal-nav-inner">
           {/* Logo & Identiti */}
           <a href="#" className="brand-logo-group">
@@ -50,6 +50,11 @@ export const Navbar: React.FC = () => {
 
             <a href="#koleksi-produk" className="nav-link-item">
               Koleksi Warisan
+            </a>
+            <span className="nav-separator">❖</span>
+
+            <a href="#kitab-pantang" className="nav-link-item">
+              Kitab E-Book
             </a>
             <span className="nav-separator">❖</span>
 
@@ -122,6 +127,13 @@ export const Navbar: React.FC = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               Koleksi Warisan
+            </a>
+            <a
+              href="#kitab-pantang"
+              className="mobile-nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Kitab E-Book
             </a>
             <a
               href="#faq"

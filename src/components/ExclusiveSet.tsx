@@ -1,11 +1,26 @@
-import React from 'react';
-import { BookOpen, Crown, Gift, MessageSquare, PackageCheck, ShoppingBag } from 'lucide-react';
+import { ArrowDown, Crown, Gift, MessageSquare, PackageCheck, ShoppingBag } from 'lucide-react';
 import { useCart } from '../context/useCart';
 import {
-  EBOOK_CHAPTERS,
   EXCLUSIVE_SET,
   EXCLUSIVE_SET_ITEMS,
 } from '../data/pantangData';
+
+const ITEM_TO_PRODUCT_ID: Record<string, string> = {
+  'Param, Pilis & Tapel Bidan': 'set-param-pilis-tapel',
+  'Gel Mandian Maharani': 'gel-mandian-maharani',
+  'Minyak Bidan Kampong': 'minyak-bidang-kampong',
+  'Bengkong Kebaya Primadona': 'bengkong-kebaya-primadona',
+  'Balm Emas Anaknda': 'balm-emas-anaknda',
+  'Tungku Permata Sungai': 'tungku-permata-sungai',
+  'Tungku Kacang Ketot': 'tungku-kacang-ketot',
+  'Lulur Bentara Hutan': 'lulur-bentara-hutan',
+  'Sajian Pantang': 'sajian-pantang',
+  'Akar Kayu Sukma Jelita': 'akar-kayu-sukma-jelita',
+  'Rempah Tangas Dewi Putik': 'rempah-tangas-dewi-putik',
+  'Limpah Susu': 'limpah-susu',
+  'Siraman Anakku': 'siraman-anakku',
+  'Bunjut Pasak Seri': 'bunjut-pasak-seri',
+};
 
 export const ExclusiveSet: React.FC = () => {
   const { addToCart, openCart } = useCart();
@@ -13,6 +28,15 @@ export const ExclusiveSet: React.FC = () => {
   const handleOrder = () => {
     addToCart(EXCLUSIVE_SET, 1);
     openCart();
+  };
+
+  const handleSelectItem = (itemTitle: string) => {
+    const prodId = ITEM_TO_PRODUCT_ID[itemTitle];
+    if (prodId) {
+      window.dispatchEvent(
+        new CustomEvent('select-product-by-id', { detail: { id: prodId } })
+      );
+    }
   };
 
   return (
@@ -27,6 +51,10 @@ export const ExclusiveSet: React.FC = () => {
           <div className="ornament-separator">
             <span className="ornament-symbol">❖ ⚜ ❖</span>
           </div>
+          <p className="section-intro-text">
+            Pakej lengkap 14 keperluan berpantang yang diadun daripada warisan
+            Melayu turun-temurun, lengkap dengan hadiah percuma E-Buku panduan 44 hari.
+          </p>
         </div>
 
         {/* Exclusive Set Main Presentation Card */}
@@ -46,24 +74,20 @@ export const ExclusiveSet: React.FC = () => {
                 </div>
               </div>
 
-              {/* Free Gift Badge */}
-              <div className="free-ebook-highlight-card">
+              {/* Free Gift Preview Link (Directs to Dedicated E-Book Section below) */}
+              <a href="#kitab-pantang" className="free-ebook-link-card" title="Lihat Kandungan E-Book">
                 <div className="free-gift-header">
                   <div className="gift-icon-wrapper">
-                    <Gift size={22} className="gift-icon-svg" />
+                    <Gift size={20} className="gift-icon-svg" />
                   </div>
                   <div>
-                    <h4>HADIAH ISTIMEWA: E-BOOK PERCUMA!</h4>
+                    <h4>HADIAH PERCUMA: KITAB IQA PANTANG MELAYU</h4>
                     <p className="gift-sub">
-                      KITAB IQA PANTANG MELAYU (Panduan 44 Hari Pantang Melayu)
+                      Panduan 44 Hari Berpantang (Lihat Kandungan 9 Bab di bawah ↓)
                     </p>
                   </div>
                 </div>
-                <p className="gift-desc-text">
-                  Diberikan secara <strong>PERCUMA</strong> dengan setiap
-                  pembelian Set Pantang Melayu Premium.
-                </p>
-              </div>
+              </a>
             </div>
 
             {/* Details Column */}
@@ -81,19 +105,39 @@ export const ExclusiveSet: React.FC = () => {
                 eksklusif yang diinspirasikan daripada kehalusan warisan Melayu.
               </p>
 
-              {/* Items included list */}
+              {/* Items included list (Interactive: Click to explore details below) */}
               <div className="included-items-container">
-                <h4 className="items-header">
-                  <PackageCheck size={18} className="items-header-icon" />
-                  <span>Apa yang anda terima? (14 Keperluan Lengkap)</span>
-                </h4>
+                <div className="items-header-row">
+                  <h4 className="items-header">
+                    <PackageCheck size={18} className="items-header-icon" />
+                    <span>Apa yang anda terima? (14 Keperluan Lengkap)</span>
+                  </h4>
+                  <span className="items-hint-text">
+                    (Klik mana-mana item untuk baca khasiat & panduan di bawah ↓)
+                  </span>
+                </div>
+
                 <div className="included-items-grid">
                   {EXCLUSIVE_SET_ITEMS.map((item, index) => (
-                    <div key={index} className="included-item-pill">
+                    <button
+                      key={index}
+                      type="button"
+                      className="included-item-pill interactive-item-pill"
+                      onClick={() => handleSelectItem(item)}
+                      title={`Klik untuk lihat huraian lengkap ${item}`}
+                    >
                       <span className="item-number">{index + 1}.</span>
                       <span className="item-title">{item}</span>
-                    </div>
+                      <span className="pill-arrow-cue">→</span>
+                    </button>
                   ))}
+                </div>
+
+                <div className="explore-items-footer">
+                  <a href="#koleksi-produk" className="explore-items-anchor">
+                    <span>Lihat Huraian Lengkap Setiap Ramuan di Bawah</span>
+                    <ArrowDown size={14} />
+                  </a>
                 </div>
               </div>
 
@@ -119,36 +163,6 @@ export const ExclusiveSet: React.FC = () => {
                   <span>Pesan Terus Ke WhatsApp</span>
                 </button>
               </div>
-            </div>
-          </div>
-
-          {/* E-Book Breakdown Section */}
-          <div className="ebook-detailed-section">
-            <div className="ebook-section-header">
-              <div className="ebook-icon-wrapper">
-                <BookOpen size={24} className="ebook-icon-svg" />
-              </div>
-              <div>
-                <h3 className="ebook-title">
-                  KANDUNGAN KITAB IQA PANTANG MELAYU
-                </h3>
-                <p className="ebook-subtitle">
-                  Panduan lengkap & berstruktur 44 hari untuk ketenangan minda
-                  dan pemulihan fizikal ibu:
-                </p>
-              </div>
-            </div>
-
-            <div className="ebook-chapters-grid">
-              {EBOOK_CHAPTERS.map((ch) => (
-                <div key={ch.num} className="chapter-card">
-                  <span className="chapter-badge">{ch.num}</span>
-                  <div className="chapter-content">
-                    <h4 className="chapter-name">{ch.title}</h4>
-                    <p className="chapter-desc">{ch.desc}</p>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Crown, Gift, Heart, ShieldCheck, Sparkles } from 'lucide-react';
+import { BookOpen, Crown, Gift, Heart, ShieldCheck } from 'lucide-react';
 import { FEATURES } from '../data/pantangData';
 
 export const Features: React.FC = () => {
@@ -16,7 +16,7 @@ export const Features: React.FC = () => {
       case 'heart':
         return <Heart size={28} className="feature-icon-svg" />;
       default:
-        return <Sparkles size={28} className="feature-icon-svg" />;
+        return <ShieldCheck size={28} className="feature-icon-svg" />;
     }
   };
 
@@ -25,7 +25,7 @@ export const Features: React.FC = () => {
       <div className="section-container">
         <div className="text-center section-header-box">
           <span className="section-subtitle">
-            <Sparkles size={13} className="inline-icon" /> KUALITI & NILAI
+            <Crown size={13} className="inline-icon" /> KUALITI & NILAI
           </span>
           <h2 className="section-title">KEISTIMEWAAN KOLEKSI KAMI</h2>
           <div className="ornament-separator">

@@ -4,10 +4,7 @@ import {
   CheckCircle2,
   Leaf,
   Scale,
-  ShoppingBag,
-  Sparkles,
 } from 'lucide-react';
-import { useCart } from '../context/useCart';
 import type { Product } from '../types';
 
 interface ProductModalProps {
@@ -19,8 +16,6 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   product,
   onClose,
 }) => {
-  const { addToCart } = useCart();
-
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -36,10 +31,6 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   }, [product, onClose]);
 
   if (!product) return null;
-
-  const handleAddToCart = () => {
-    addToCart(product, 1);
-  };
 
   return (
     <div
@@ -116,7 +107,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
               {product.manfaat && product.manfaat.length > 0 && (
                 <div className="modal-detail-block">
                   <h4 className="detail-block-title">
-                    <Sparkles size={15} className="detail-heading-icon" />
+                    <span className="ornament-tiny">❖</span>
                     <span>Manfaat:</span>
                   </h4>
                   <ul className="modal-bullet-list">
@@ -152,16 +143,22 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                 </div>
               )}
 
-              {/* Action Button */}
-              <div className="modal-actions-bar">
-                <button
-                  type="button"
-                  className="btn-tradisi-gold w-full"
-                  onClick={handleAddToCart}
+              {/* Informational Package Note (No Buy button) */}
+              <div className="modal-info-footer-box">
+                <div className="modal-info-footer-text">
+                  <span className="ornament-tiny">❖</span>
+                  <p>
+                    Ramuan ini disediakan khusus sebagai komponen dalam{' '}
+                    <strong>Set Pantang Melayu Premium (RM 349)</strong>.
+                  </p>
+                </div>
+                <a
+                  href="#pakej-premium"
+                  onClick={onClose}
+                  className="btn-tradisi-gold btn-modal-nav"
                 >
-                  <ShoppingBag size={17} />
-                  <span>Tambah Ke Troli Pesanan</span>
-                </button>
+                  Lihat Pakej Lengkap Di Atas
+                </a>
               </div>
             </div>
           </div>

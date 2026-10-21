@@ -388,7 +388,7 @@ export const FOUNDER_ACHIEVEMENTS: Achievement[] = [
   { iconType: 'crown', title: 'Mrs Queen Cheongsam International 2025', country: 'Taiwan' },
   { iconType: 'award', title: 'Cultural Beauty Queen of the Year', country: 'MFMPA' },
   { iconType: 'trophy', title: 'No. 1 Best Inspiring Woman', country: 'Indonesia' },
-  { iconType: 'sparkles', title: 'Pelbagai kemenangan dan pengiktirafan dalam bidang peragaan serta pertandingan kecantikan.' },
+  { iconType: 'award', title: 'Pelbagai kemenangan dan pengiktirafan dalam bidang peragaan serta pertandingan kecantikan.' },
 ];
 
 export const FEATURES: FeatureItem[] = [

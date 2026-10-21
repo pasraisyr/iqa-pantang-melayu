@@ -19,7 +19,7 @@ export interface CartItem {
 }
 
 export interface Achievement {
-  iconType: 'crown' | 'globe' | 'award' | 'sparkles' | 'trophy';
+  iconType: 'crown' | 'globe' | 'award' | 'trophy';
   title: string;
   country?: string;
 }
