@@ -407,51 +407,7 @@ export const ProductCollection: React.FC = () => {
               </div>
             </div>
 
-            {/* Bottom Slider Navigation Bar with Arrow Controls & Indicator */}
-            <div className="showcase-bottom-nav">
-              <button
-                type="button"
-                className="btn-slider-arrow-bottom"
-                onClick={() => {
-                  goToPrev();
-                  scrollToCenter();
-                }}
-                aria-label="Ramuan Sebelumnya"
-              >
-                <ChevronLeft size={18} />
-                <span>Sebelumnya</span>
-              </button>
 
-              <div className="slider-pills-bar">
-                {PRODUCTS.map((prod, idx) => (
-                  <button
-                    key={prod.id}
-                    type="button"
-                    className={`slider-pill-dot ${
-                      idx === currentIndex ? 'active' : ''
-                    }`}
-                    onClick={() => goToIndex(idx, true)}
-                    aria-label={`Pergi ke ramuan ${idx + 1}: ${prod.name}`}
-                    title={`${idx + 1}. ${prod.name}`}
-                  >
-                    <span className="dot-label">{idx + 1}</span>
-                  </button>
-                ))}
-              </div>
-
-              <button
-                type="button"
-                className="btn-slider-arrow-bottom"
-                onClick={() => {
-                  goToNext();
-                  scrollToCenter();
-                }}
-                aria-label="Ramuan Seterusnya"
-              >
-                <span>Seterusnya</span>
-                <ChevronRight size={18} />
-              </button>
-            </div>
           </div>
         </div>
 
