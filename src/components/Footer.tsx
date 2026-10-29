@@ -46,6 +46,9 @@ export const Footer: React.FC = () => {
               <a href="#keistimewaan">Keistimewaan Koleksi</a>
             </li>
             <li>
+              <a href="#kata-pelanggan">Apa Kata Pelanggan</a>
+            </li>
+            <li>
               <a href="#kasih-bonda">Inisiatif Kasih Bonda</a>
             </li>
             <li>

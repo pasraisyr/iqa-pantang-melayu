@@ -7,7 +7,7 @@ import {
   ShoppingBag,
 } from 'lucide-react';
 import { useCart } from '../context/useCart';
-import { EXCLUSIVE_SET } from '../data/pantangData';
+import { EXCLUSIVE_SET, SET_TEMBIKAR_SRI_BONDA } from '../data/pantangData';
 
 export const CartDrawer: React.FC = () => {
   const {
@@ -78,16 +78,28 @@ export const CartDrawer: React.FC = () => {
                 Sila pilih koleksi pantang atau mana-mana produk warisan kami
                 untuk dimasukkan ke dalam pesanan anda.
               </p>
-              <button
-                type="button"
-                className="btn-tradisi-gold mt-3"
-                onClick={() => {
-                  addToCart(EXCLUSIVE_SET, 1);
-                }}
-              >
-                <Plus size={16} />
-                <span>Tambah Set Pantang Premium (RM 349)</span>
-              </button>
+              <div className="empty-cart-buttons-group">
+                <button
+                  type="button"
+                  className="btn-tradisi-gold mt-3 w-full"
+                  onClick={() => {
+                    addToCart(EXCLUSIVE_SET, 1);
+                  }}
+                >
+                  <Plus size={16} />
+                  <span>Tambah Set Pantang Premium (RM 349)</span>
+                </button>
+                <button
+                  type="button"
+                  className="btn-tradisi-outline mt-2 w-full"
+                  onClick={() => {
+                    addToCart(SET_TEMBIKAR_SRI_BONDA, 1);
+                  }}
+                >
+                  <Plus size={16} />
+                  <span>Tambah Set Pengurusan Uri (RM 79)</span>
+                </button>
+              </div>
             </div>
           ) : (
             <>
@@ -165,6 +177,36 @@ export const CartDrawer: React.FC = () => {
                     </div>
                   ))}
                 </div>
+
+                {/* Addon suggestion if Tembikar not in cart */}
+                {!cart.some((item) => item.product.id === 'set-tembikar-sri-bonda') && (
+                  <div className="cart-addon-recommendation">
+                    <div className="addon-rec-header">
+                      <span className="addon-badge">Cadangan Tambahan</span>
+                      <strong className="addon-title">Set Pengurusan Uri</strong>
+                    </div>
+                    <div className="addon-rec-content">
+                      <img
+                        src={SET_TEMBIKAR_SRI_BONDA.image}
+                        alt={SET_TEMBIKAR_SRI_BONDA.name}
+                        className="addon-rec-img"
+                      />
+                      <div className="addon-rec-details">
+                        <span className="addon-rec-name">Tembikar Sri Bonda</span>
+                        <span className="addon-rec-price">RM 79</span>
+                      </div>
+                      <button
+                        type="button"
+                        className="btn-addon-add"
+                        onClick={() => addToCart(SET_TEMBIKAR_SRI_BONDA, 1)}
+                        title="Tambah Set Pengurusan Uri ke troli"
+                      >
+                        <Plus size={14} />
+                        <span>Tambah</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Order Form */}

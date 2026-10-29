@@ -4,8 +4,10 @@ import {
   CheckCircle2,
   Leaf,
   Scale,
+  ShoppingBag,
 } from 'lucide-react';
 import type { Product } from '../types';
+import { useCart } from '../context/useCart';
 
 interface ProductModalProps {
   product: Product | null;
@@ -16,6 +18,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   product,
   onClose,
 }) => {
+  const { addToCart, openCart } = useCart();
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -84,6 +87,14 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                 <p className="modal-product-subtitle">{product.subtitle}</p>
               )}
 
+              {product.price && (
+                <div className="modal-price-tag-wrap">
+                  <span className="modal-price-pill">
+                    Harga: <strong>RM {product.price}</strong>
+                  </span>
+                </div>
+              )}
+
               {product.description && (
                 <p className="modal-description">{product.description}</p>
               )}
@@ -143,23 +154,47 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                 </div>
               )}
 
-              {/* Informational Package Note (No Buy button) */}
-              <div className="modal-info-footer-box">
-                <div className="modal-info-footer-text">
-                  <span className="ornament-tiny">❖</span>
-                  <p>
-                    Ramuan ini disediakan khusus sebagai komponen dalam{' '}
-                    <strong>Set Pantang Melayu Premium (RM 349)</strong>.
-                  </p>
+              {/* Standalone Buy Button or Informational Package Note */}
+              {product.price ? (
+                <div className="modal-info-footer-box modal-buy-footer-box">
+                  <div className="modal-info-footer-text">
+                    <span className="ornament-tiny">❖</span>
+                    <p>
+                      Boleh dibeli berasingan:{' '}
+                      <strong className="modal-price-highlight">RM {product.price}</strong>
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      addToCart(product, 1);
+                      onClose();
+                      openCart();
+                    }}
+                    className="btn-tradisi-gold btn-modal-nav"
+                  >
+                    <ShoppingBag size={16} />
+                    <span>Tambah Ke Troli (RM {product.price})</span>
+                  </button>
                 </div>
-                <a
-                  href="#pakej-premium"
-                  onClick={onClose}
-                  className="btn-tradisi-gold btn-modal-nav"
-                >
-                  Lihat Pakej Lengkap Di Atas
-                </a>
-              </div>
+              ) : (
+                <div className="modal-info-footer-box">
+                  <div className="modal-info-footer-text">
+                    <span className="ornament-tiny">❖</span>
+                    <p>
+                      Ramuan ini disediakan khusus sebagai komponen dalam{' '}
+                      <strong>Set Pantang Melayu Premium (RM 349)</strong>.
+                    </p>
+                  </div>
+                  <a
+                    href="#pakej-premium"
+                    onClick={onClose}
+                    className="btn-tradisi-gold btn-modal-nav"
+                  >
+                    Lihat Pakej Lengkap Di Atas
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>

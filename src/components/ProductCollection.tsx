@@ -11,12 +11,15 @@ import {
   Maximize2,
   Package,
   Scale,
+  ShoppingBag,
 } from 'lucide-react';
 import { PRODUCTS } from '../data/pantangData';
 import type { Product } from '../types';
+import { useCart } from '../context/useCart';
 import { ProductModal } from './ProductModal';
 
 export const ProductCollection: React.FC = () => {
+  const { addToCart, openCart } = useCart();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const showcaseCardRef = useRef<HTMLDivElement>(null);
@@ -301,6 +304,14 @@ export const ProductCollection: React.FC = () => {
                   </div>
                   <h3 className="showcase-product-name">{currentProduct.name}</h3>
 
+                  {currentProduct.price ? (
+                    <div className="showcase-price-tag-wrap">
+                      <span className="price-tag-pill">
+                        Harga: <strong>RM {currentProduct.price}</strong>
+                      </span>
+                    </div>
+                  ) : null}
+
                   {/* Overview Description */}
                   {currentProduct.description && (
                     <div className="showcase-intro-block-centered">
@@ -385,25 +396,52 @@ export const ProductCollection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Package Inclusion Callout (No Catalog Buy button) */}
-                <div className="showcase-package-callout">
-                  <div className="callout-icon-wrap">
-                    <Package size={20} />
+                {/* Package Inclusion Callout OR Standalone Purchasable Callout */}
+                {currentProduct.price ? (
+                  <div className="showcase-package-callout callout-purchasable">
+                    <div className="callout-icon-wrap callout-cart-wrap">
+                      <ShoppingBag size={22} />
+                    </div>
+                    <div className="callout-content">
+                      <h5 className="callout-heading">
+                        Boleh Dibeli Berasingan — RM {currentProduct.price}
+                      </h5>
+                      <p className="callout-desc">
+                        Set lengkap pengurusan uri sedia guna mengikut syariat & adat Melayu.
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      className="btn-tradisi-gold btn-callout-link"
+                      onClick={() => {
+                        addToCart(currentProduct, 1);
+                        openCart();
+                      }}
+                    >
+                      <ShoppingBag size={16} />
+                      <span>Tambah Ke Troli (RM {currentProduct.price})</span>
+                    </button>
                   </div>
-                  <div className="callout-content">
-                    <h5 className="callout-heading">
-                      Sebahagian Daripada Set Pantang Melayu Premium
-                    </h5>
-                    <p className="callout-desc">
-                      Nikmati khasiat 14 persediaan lengkap berserta Percuma
-                      E-Buku Kitab IQA Pantang Melayu.
-                    </p>
+                ) : (
+                  <div className="showcase-package-callout">
+                    <div className="callout-icon-wrap">
+                      <Package size={20} />
+                    </div>
+                    <div className="callout-content">
+                      <h5 className="callout-heading">
+                        Sebahagian Daripada Set Pantang Melayu Premium
+                      </h5>
+                      <p className="callout-desc">
+                        Nikmati khasiat 14 persediaan lengkap berserta Percuma
+                        E-Buku Kitab IQA Pantang Melayu.
+                      </p>
+                    </div>
+                    <a href="#pakej-premium" className="btn-tradisi-gold btn-callout-link">
+                      <span>Lihat Pakej (RM 349)</span>
+                      <ArrowRight size={15} />
+                    </a>
                   </div>
-                  <a href="#pakej-premium" className="btn-tradisi-gold btn-callout-link">
-                    <span>Lihat Pakej (RM 349)</span>
-                    <ArrowRight size={15} />
-                  </a>
-                </div>
+                )}
               </div>
             </div>
 
@@ -447,6 +485,9 @@ export const ProductCollection: React.FC = () => {
                     <span className="thumb-name">{prod.name}</span>
                     {prod.subtitle && (
                       <span className="thumb-sub">{prod.subtitle}</span>
+                    )}
+                    {prod.price && (
+                      <span className="thumb-price-badge">RM {prod.price}</span>
                     )}
                   </div>
                 </button>

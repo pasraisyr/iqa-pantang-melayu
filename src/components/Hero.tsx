@@ -75,7 +75,7 @@ export const Hero: React.FC = () => {
         <div className="hero-visual-wrapper">
           <div className="hero-image-frame">
             <img
-              src="/media/hero_main.jpg"
+              src="/media/replace_hero.jpg"
               alt="IQA Pantang Melayu - Ritual Nusantara Mewah"
               className="hero-main-img"
               loading="eager"

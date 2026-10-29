@@ -6,6 +6,7 @@ import { CompanyProfile } from './components/CompanyProfile';
 import { ExclusiveSet } from './components/ExclusiveSet';
 import { FaqSection } from './components/FaqSection';
 import { Features } from './components/Features';
+import { Testimonials } from './components/Testimonials';
 import { KasihBonda } from './components/KasihBonda';
 import { FounderStory } from './components/FounderStory';
 import { Hero } from './components/Hero';
@@ -38,6 +39,7 @@ export const App: React.FC = () => {
           <ProductCollection />
           <EbookSection />
           <Features />
+          <Testimonials />
           <KasihBonda />
           <FaqSection />
           <ClosingCta />

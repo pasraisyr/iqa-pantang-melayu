@@ -365,6 +365,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'set-tembikar-sri-bonda',
     name: 'Set Pengurusan Uri - Tembikar Sri Bonda',
+    subtitle: 'Set Pengurusan Uri Tradisional',
+    price: 79,
     image: '/media/tembikar_sri_bonda.jpg',
     description: 'Set lengkap pengurusan uri mengikut syariat dan adat Melayu.',
     kandungan: [
@@ -380,6 +382,10 @@ export const PRODUCTS: Product[] = [
     ],
   },
 ];
+
+export const SET_TEMBIKAR_SRI_BONDA = PRODUCTS.find(
+  (p) => p.id === 'set-tembikar-sri-bonda'
+)!;
 
 export const FOUNDER_ACHIEVEMENTS: Achievement[] = [
   { iconType: 'crown', title: 'Mrs Continental Tourism International 2022', country: 'Philippines' },

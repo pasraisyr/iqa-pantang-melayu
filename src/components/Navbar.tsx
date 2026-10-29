@@ -58,6 +58,11 @@ export const Navbar: React.FC = () => {
             </a>
             <span className="nav-separator">❖</span>
 
+            <a href="#kata-pelanggan" className="nav-link-item">
+              Kata Pelanggan
+            </a>
+            <span className="nav-separator">❖</span>
+
             <a href="#kasih-bonda" className="nav-link-item">
               Kasih Bonda
             </a>
@@ -139,6 +144,13 @@ export const Navbar: React.FC = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               Kitab E-Book
+            </a>
+            <a
+              href="#kata-pelanggan"
+              className="mobile-nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Kata Pelanggan
             </a>
             <a
               href="#kasih-bonda"
