@@ -1,19 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
   AlertCircle,
-  ArrowRight,
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
+  CreditCard,
+  ExternalLink,
   Eye,
   Info,
   Leaf,
   Maximize2,
+  MessageSquare,
   Package,
   Scale,
-  ShoppingBag,
 } from 'lucide-react';
-import { PRODUCTS } from '../data/pantangData';
+import { DOKU_PAYMENT_URL, PRODUCTS } from '../data/pantangData';
 import type { Product } from '../types';
 import { useCart } from '../context/useCart';
 import { ProductModal } from './ProductModal';
@@ -400,26 +401,26 @@ export const ProductCollection: React.FC = () => {
                 {currentProduct.price ? (
                   <div className="showcase-package-callout callout-purchasable">
                     <div className="callout-icon-wrap callout-cart-wrap">
-                      <ShoppingBag size={22} />
+                      <MessageSquare size={20} />
                     </div>
                     <div className="callout-content">
                       <h5 className="callout-heading">
                         Boleh Dibeli Berasingan — RM {currentProduct.price}
                       </h5>
                       <p className="callout-desc">
-                        Set lengkap pengurusan uri sedia guna mengikut syariat & adat Melayu.
+                        Set lengkap pengurusan uri mengikut syariat & adat Melayu. Pesanan dihantar terus melalui WhatsApp.
                       </p>
                     </div>
                     <button
                       type="button"
-                      className="btn-tradisi-gold btn-callout-link"
+                      className="btn-tradisi-green btn-callout-link"
                       onClick={() => {
                         addToCart(currentProduct, 1);
                         openCart();
                       }}
                     >
-                      <ShoppingBag size={16} />
-                      <span>Tambah Ke Troli (RM {currentProduct.price})</span>
+                      <MessageSquare size={16} />
+                      <span>Pesan Di WhatsApp (RM {currentProduct.price})</span>
                     </button>
                   </div>
                 ) : (
@@ -436,9 +437,15 @@ export const ProductCollection: React.FC = () => {
                         E-Buku Kitab IQA Pantang Melayu.
                       </p>
                     </div>
-                    <a href="#pakej-premium" className="btn-tradisi-gold btn-callout-link">
-                      <span>Lihat Pakej (RM 349)</span>
-                      <ArrowRight size={15} />
+                    <a
+                      href={DOKU_PAYMENT_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-tradisi-gold btn-callout-link"
+                    >
+                      <CreditCard size={15} />
+                      <span>Beli Set Terus (RM 349)</span>
+                      <ExternalLink size={13} />
                     </a>
                   </div>
                 )}

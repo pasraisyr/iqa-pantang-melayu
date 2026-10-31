@@ -1,5 +1,6 @@
 import React from 'react';
-import { BookOpen, Crown, Eye, Gift, Leaf, ShieldCheck } from 'lucide-react';
+import { BookOpen, CreditCard, Crown, ExternalLink, Gift, Leaf, ShieldCheck } from 'lucide-react';
+import { DOKU_PAYMENT_URL } from '../data/pantangData';
 
 export const Hero: React.FC = () => {
   return (
@@ -42,11 +43,14 @@ export const Hero: React.FC = () => {
           {/* Exactly 2 Clean, Distinct CTA Buttons */}
           <div className="hero-cta-group">
             <a
-              href="#pakej-premium"
+              href={DOKU_PAYMENT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-tradisi-gold hero-btn"
             >
-              <Eye size={18} />
-              <span>Lihat Set Premium (RM 349)</span>
+              <CreditCard size={18} />
+              <span>Beli Set Premium (RM 349)</span>
+              <ExternalLink size={15} />
             </a>
             <a href="#kitab-pantang" className="btn-tradisi-outline hero-btn">
               <BookOpen size={18} />

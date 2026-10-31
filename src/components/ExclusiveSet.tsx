@@ -1,7 +1,6 @@
-import { ArrowDown, Crown, Gift, MessageSquare, PackageCheck, ShoppingBag } from 'lucide-react';
-import { useCart } from '../context/useCart';
+import { ArrowDown, CreditCard, Crown, ExternalLink, Gift, PackageCheck, ShieldCheck } from 'lucide-react';
 import {
-  EXCLUSIVE_SET,
+  DOKU_PAYMENT_URL,
   EXCLUSIVE_SET_ITEMS,
 } from '../data/pantangData';
 
@@ -23,12 +22,6 @@ const ITEM_TO_PRODUCT_ID: Record<string, string> = {
 };
 
 export const ExclusiveSet: React.FC = () => {
-  const { addToCart, openCart } = useCart();
-
-  const handleOrder = () => {
-    addToCart(EXCLUSIVE_SET, 1);
-    openCart();
-  };
 
   const handleSelectItem = (itemTitle: string) => {
     const prodId = ITEM_TO_PRODUCT_ID[itemTitle];
@@ -141,27 +134,25 @@ export const ExclusiveSet: React.FC = () => {
                 </div>
               </div>
 
-              {/* Action Buttons */}
+              {/* Action Buttons (Direct Online Payment via DOKU) */}
               <div className="exclusive-cta-actions">
-                <button
-                  type="button"
-                  className="btn-tradisi-gold cta-action-btn"
-                  onClick={handleOrder}
+                <a
+                  href={DOKU_PAYMENT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-tradisi-gold cta-action-btn cta-doku-btn"
                 >
-                  <ShoppingBag size={18} />
-                  <span>Tambah Ke Troli (RM 349)</span>
-                </button>
-                <button
-                  type="button"
-                  className="btn-tradisi-green cta-action-btn"
-                  onClick={() => {
-                    addToCart(EXCLUSIVE_SET, 1);
-                    openCart();
-                  }}
-                >
-                  <MessageSquare size={18} />
-                  <span>Pesan Terus Ke WhatsApp</span>
-                </button>
+                  <CreditCard size={20} />
+                  <span>Bayar Terus Secara Online (RM 349)</span>
+                  <ExternalLink size={17} />
+                </a>
+              </div>
+
+              <div className="exclusive-payment-trust-bar">
+                <ShieldCheck size={16} className="trust-shield-icon" />
+                <span>
+                  Pembayaran selamat & rasmi melalui <strong>Gerbang Pembayaran DOKU</strong> (FPX Online Banking, Kad Kredit & Debit). Resit automatik dihantar ke emel anda.
+                </span>
               </div>
             </div>
           </div>

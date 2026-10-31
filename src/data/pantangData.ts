@@ -13,6 +13,8 @@ export const BUSINESS_INFO: BusinessInfo = {
   whatsappNumber: '60199687696',
 };
 
+export const DOKU_PAYMENT_URL = 'https://pay.doku.com/p-link/p/iqapantangmelayu';
+
 export const EXCLUSIVE_SET: Product = {
   id: 'set-pantang-premium',
   name: 'SET PANTANG MELAYU PREMIUM',

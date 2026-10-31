@@ -1,14 +1,7 @@
-import { CheckCircle2, Gift, ShoppingBag } from 'lucide-react';
-import { useCart } from '../context/useCart';
-import { EBOOK_CHAPTERS, EXCLUSIVE_SET } from '../data/pantangData';
+import { CheckCircle2, CreditCard, ExternalLink, Gift } from 'lucide-react';
+import { DOKU_PAYMENT_URL, EBOOK_CHAPTERS } from '../data/pantangData';
 
 export const EbookSection: React.FC = () => {
-  const { addToCart, openCart } = useCart();
-
-  const handleOrder = () => {
-    addToCart(EXCLUSIVE_SET, 1);
-    openCart();
-  };
 
   return (
     <section id="kitab-pantang" className="ebook-section section-padding">
@@ -101,14 +94,16 @@ export const EbookSection: React.FC = () => {
                   </p>
                 </div>
                 <div className="ebook-cta-buttons">
-                  <button
-                    type="button"
+                  <a
+                    href={DOKU_PAYMENT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="btn-tradisi-gold btn-sm"
-                    onClick={handleOrder}
                   >
-                    <ShoppingBag size={16} />
-                    <span>Tempah Set & Dapatkan E-Book (RM 349)</span>
-                  </button>
+                    <CreditCard size={16} />
+                    <span>Beli Set & Dapat E-Book Percuma (RM 349)</span>
+                    <ExternalLink size={14} />
+                  </a>
                   <a
                     href="#pakej-premium"
                     className="btn-tradisi-outline btn-sm"

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Crown, Eye } from 'lucide-react';
+import { CreditCard, Crown, ExternalLink } from 'lucide-react';
+import { DOKU_PAYMENT_URL } from '../data/pantangData';
 
 export const ClosingCta: React.FC = () => {
   return (
@@ -30,11 +31,14 @@ export const ClosingCta: React.FC = () => {
             </p>
 
             <a
-              href="#pakej-premium"
+              href={DOKU_PAYMENT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-tradisi-gold closing-btn"
             >
-              <Eye size={18} />
-              <span>LIHAT KOLEKSI SET PREMIUM (RM 349)</span>
+              <CreditCard size={18} />
+              <span>BAYAR TERUS SECARA ONLINE (RM 349)</span>
+              <ExternalLink size={16} />
             </a>
           </div>
         </div>

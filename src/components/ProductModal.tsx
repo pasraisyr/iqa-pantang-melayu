@@ -2,12 +2,15 @@ import React, { useEffect } from 'react';
 import {
   AlertCircle,
   CheckCircle2,
+  CreditCard,
+  ExternalLink,
   Leaf,
+  MessageSquare,
   Scale,
-  ShoppingBag,
 } from 'lucide-react';
 import type { Product } from '../types';
 import { useCart } from '../context/useCart';
+import { DOKU_PAYMENT_URL } from '../data/pantangData';
 
 interface ProductModalProps {
   product: Product | null;
@@ -161,7 +164,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                     <span className="ornament-tiny">❖</span>
                     <p>
                       Boleh dibeli berasingan:{' '}
-                      <strong className="modal-price-highlight">RM {product.price}</strong>
+                      <strong className="modal-price-highlight">RM {product.price}</strong> (Pesan via WhatsApp)
                     </p>
                   </div>
                   <button
@@ -171,10 +174,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                       onClose();
                       openCart();
                     }}
-                    className="btn-tradisi-gold btn-modal-nav"
+                    className="btn-tradisi-green btn-modal-nav"
                   >
-                    <ShoppingBag size={16} />
-                    <span>Tambah Ke Troli (RM {product.price})</span>
+                    <MessageSquare size={16} />
+                    <span>Pesan Di WhatsApp (RM {product.price})</span>
                   </button>
                 </div>
               ) : (
@@ -187,11 +190,14 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                     </p>
                   </div>
                   <a
-                    href="#pakej-premium"
-                    onClick={onClose}
+                    href={DOKU_PAYMENT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="btn-tradisi-gold btn-modal-nav"
                   >
-                    Lihat Pakej Lengkap Di Atas
+                    <CreditCard size={15} />
+                    <span>Bayar Terus Online (RM 349)</span>
+                    <ExternalLink size={13} />
                   </a>
                 </div>
               )}

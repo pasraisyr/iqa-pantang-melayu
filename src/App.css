@@ -1629,6 +1629,120 @@
   min-width: 220px;
 }
 
+.cta-doku-btn {
+  background: linear-gradient(135deg, #b38234 0%, #8e6321 100%);
+  color: #ffffff;
+  font-size: 1.05rem;
+  padding: 15px 28px;
+  box-shadow: 0 4px 15px rgba(142, 99, 33, 0.4);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: var(--radius-sm);
+  transition: all 0.25s ease;
+}
+
+.cta-doku-btn:hover {
+  background: linear-gradient(135deg, #c79545 0%, #a0722a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(142, 99, 33, 0.5);
+  color: #ffffff;
+}
+
+.exclusive-payment-trust-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: rgba(23, 52, 38, 0.05);
+  border: 1px dashed var(--border-gold);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  color: var(--color-primary);
+  line-height: 1.45;
+}
+
+.trust-shield-icon {
+  color: var(--color-accent-gold-dark);
+  flex-shrink: 0;
+}
+
+/* Cart DOKU Banner */
+.cart-doku-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: linear-gradient(135deg, #fdf8ef 0%, #f6ebd6 100%);
+  border: 1.5px solid var(--border-gold);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-classic);
+}
+
+.cart-doku-banner-text {
+  flex: 1;
+}
+
+.doku-banner-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: var(--color-accent-maroon);
+  color: #ffffff;
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-bottom: 3px;
+}
+
+.doku-banner-title {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--color-primary);
+  line-height: 1.25;
+}
+
+.doku-banner-sub {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin: 2px 0 0;
+}
+
+.btn-doku-link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--color-accent-gold);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-doku-link-pill:hover {
+  background: var(--color-accent-gold-dark);
+  transform: translateY(-1px);
+}
+
+.empty-cart-doku-btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
 /* --------------------------------------------------------------------------
    6b. Dedicated Kitab IQA Pantang Melayu (E-Book) Section
    -------------------------------------------------------------------------- */

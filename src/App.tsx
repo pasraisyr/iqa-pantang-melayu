@@ -34,13 +34,13 @@ export const App: React.FC = () => {
           <Hero />
           <Introduction />
           <FounderStory />
-          <VisionMission />
-          <ExclusiveSet />
           <ProductCollection />
+          <ExclusiveSet />
           <EbookSection />
           <Features />
-          <Testimonials />
           <KasihBonda />
+          <VisionMission />
+          <Testimonials />
           <FaqSection />
           <ClosingCta />
           <CompanyProfile />

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import {
   AlertCircle,
+  CreditCard,
+  ExternalLink,
   MessageSquare,
   Plus,
   ShieldCheck,
   ShoppingBag,
 } from 'lucide-react';
 import { useCart } from '../context/useCart';
-import { EXCLUSIVE_SET, SET_TEMBIKAR_SRI_BONDA } from '../data/pantangData';
+import { DOKU_PAYMENT_URL, SET_TEMBIKAR_SRI_BONDA } from '../data/pantangData';
 
 export const CartDrawer: React.FC = () => {
   const {
@@ -79,34 +81,52 @@ export const CartDrawer: React.FC = () => {
                 untuk dimasukkan ke dalam pesanan anda.
               </p>
               <div className="empty-cart-buttons-group">
-                <button
-                  type="button"
-                  className="btn-tradisi-gold mt-3 w-full"
-                  onClick={() => {
-                    addToCart(EXCLUSIVE_SET, 1);
-                  }}
+                <a
+                  href={DOKU_PAYMENT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-tradisi-gold mt-3 w-full empty-cart-doku-btn"
                 >
-                  <Plus size={16} />
-                  <span>Tambah Set Pantang Premium (RM 349)</span>
-                </button>
+                  <CreditCard size={16} />
+                  <span>Bayar Terus Set Premium (RM 349)</span>
+                  <ExternalLink size={14} />
+                </a>
                 <button
                   type="button"
-                  className="btn-tradisi-outline mt-2 w-full"
+                  className="btn-tradisi-green mt-2 w-full"
                   onClick={() => {
                     addToCart(SET_TEMBIKAR_SRI_BONDA, 1);
                   }}
                 >
-                  <Plus size={16} />
-                  <span>Tambah Set Pengurusan Uri (RM 79)</span>
+                  <MessageSquare size={16} />
+                  <span>Pesan Set Pengurusan Uri (RM 79)</span>
                 </button>
               </div>
             </div>
           ) : (
             <>
+              {/* Banner Bayaran Terus DOKU untuk Set Premium RM 349 */}
+              <div className="cart-doku-banner">
+                <div className="cart-doku-banner-text">
+                  <span className="doku-banner-tag">Bayar Terus Online</span>
+                  <strong className="doku-banner-title">Set Pantang Premium (RM 349)</strong>
+                  <p className="doku-banner-sub">Bayar terus melalui DOKU tanpa perlu WhatsApp.</p>
+                </div>
+                <a
+                  href={DOKU_PAYMENT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-doku-link-pill"
+                >
+                  <span>Bayar RM 349</span>
+                  <ExternalLink size={12} />
+                </a>
+              </div>
+
               {/* Product list */}
               <div className="cart-items-section">
                 <h4 className="cart-section-title">
-                  Senarai Item ({totalItems})
+                  Senarai Item Pesanan WhatsApp ({totalItems})
                 </h4>
                 <div className="cart-items-list">
                   {cart.map((item) => (
@@ -307,7 +327,7 @@ export const CartDrawer: React.FC = () => {
             <button
               type="submit"
               form="orderForm"
-              className="btn-tradisi-gold w-full cart-checkout-btn"
+              className="btn-tradisi-green w-full cart-checkout-btn"
             >
               <MessageSquare size={18} />
               <span>HANTAR PESANAN KE WHATSAPP</span>
