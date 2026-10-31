@@ -32,15 +32,23 @@ export const App: React.FC = () => {
         <Navbar />
         <main>
           <Hero />
+          {/* 1. Pengenalan */}
           <Introduction />
-          <FounderStory />
-          <ProductCollection />
-          <ExclusiveSet />
-          <EbookSection />
+          {/* 2. Keistimewaan Iqa Pantang Melayu */}
           <Features />
-          <KasihBonda />
+          {/* 3. Set Pantang Premium RM349 */}
+          <ExclusiveSet />
+          {/* 4. Senarai 15 Produk & Huraian Khasiat */}
+          <ProductCollection />
+          {/* 5. Hadiah E-Book Percuma */}
+          <EbookSection />
+          {/* 6. Kisah Pengasas */}
+          <FounderStory />
+          {/* 7. Visi Misi Falsafah */}
           <VisionMission />
+          {/* Bahagian Tambahan / Sedia Ada */}
           <Testimonials />
+          <KasihBonda />
           <FaqSection />
           <ClosingCta />
           <CompanyProfile />
